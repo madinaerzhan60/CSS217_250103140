@@ -1,0 +1,13 @@
+package CSS217_250103140.week10.task3;
+
+public class DailySummaryAlert extends Alert {
+    public DailySummaryAlert(MessageChannel channel, DispatchStrategy strategy) {
+        super(channel, strategy);
+    }
+    @Override
+    public int getSeverityLevel() { return 1; }
+    @Override
+    public String formatAlertBody(String raw) {
+        return "Daily Digest:\n" + raw;
+    }
+}
