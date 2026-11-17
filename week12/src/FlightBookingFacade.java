@@ -22,7 +22,7 @@ public class FlightBookingFacade {
                              int bagCount,
                              double bagWeightKg,
                              String currency,
-                             String cardNumber) {
+                             String cardNumber, String loyaltyTier) {
 
         String lockToken = null;
 
@@ -33,15 +33,25 @@ public class FlightBookingFacade {
             lockToken = seatSystem.lockSeat(flightCode,seatNumber,passengerName);
 
             // TODO 2: Compute baggage fee in USD and add to baseFareUSD.
-            double baggageFee = baggageEngine.calculateBaggageFeeUSD(bagCount,bagWeightKg);
+            double baggageFee = 0.0;
+            if(loyaltyTier.equals("STANDARD")){
+                baggageFee = baggageEngine.calculateBaggageFeeUSD(bagCount,bagWeightKg);
+
+            }
             double totalUSD = baggageFee + baseFareUSD;
+
             // TODO 3: Convert total USD amount into target currency.
             double convertedTotal = currencyConverter.convertFromUSD(totalUSD, currency);
 
             // TODO 4: Initialize payment gateway and charge the card.
+
             paymentProcessor.initializeGateway();
+            if (loyaltyTier.equals("SILVER")) {
+                paymentProcessor.applyPromoCode("SILVER-FREE-BAG");
+            }
             String receiptId = paymentProcessor.chargeCard(cardNumber, convertedTotal, currency);
             // TODO 5: Generate and return the final e-ticket code.
+
             return ticketIssuer.generateTicket(passengerName, flightCode, lockToken,receiptId );
 
         } catch (RuntimeException ex) {
@@ -57,5 +67,23 @@ public class FlightBookingFacade {
             seatSystem.disconnect();
             // TODO 7: Ensure seat server disconnects regardless of success or failure.
         }
+    }
+
+    public String bookFlight(
+            String passengerName,
+            String flightCode,
+            String seatNumber,
+            double baseFareUSD,
+            int bagCount,
+            double bagWeightKg,
+            String currency,
+            String cardNumber) {
+
+        return bookFlight(
+                passengerName, flightCode,
+                seatNumber, baseFareUSD,
+                bagCount, bagWeightKg,
+                currency, cardNumber, "STANDARD"
+        );
     }
 }

@@ -48,5 +48,19 @@ public class Main {
         );
 
         System.out.println("Result 3: " + ticket3 + "\n");
+
+        String ticket4 = bookingFacade.bookFlight(
+                "Timurchik",
+                "KC1000",
+                "07W",
+                320.00,
+                3,
+                30.0,
+                "KZT",
+                "4532015112830369",
+                "SILVER"
+        );
+
+        System.out.println("Result 4: " + ticket4 + "\n");
     }
 }
