@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/CSS217_250103140.iml" filepath="$PROJECT_DIR$/CSS217_250103140.iml" />
+      <module fileurl="file://$PROJECT_DIR$/week9/bridge/bridge.iml" filepath="$PROJECT_DIR$/week9/bridge/bridge.iml" />
+      <module fileurl="file://$PROJECT_DIR$/week9/proxy/proxy.iml" filepath="$PROJECT_DIR$/week9/proxy/proxy.iml" />
+      <module fileurl="file://$PROJECT_DIR$/week12/week12.iml" filepath="$PROJECT_DIR$/week12/week12.iml" />
+      <module fileurl="file://$PROJECT_DIR$/week4_adapter/week4_adapter.iml" filepath="$PROJECT_DIR$/week4_adapter/week4_adapter.iml" />
+      <module fileurl="file://$PROJECT_DIR$/week8/week8.iml" filepath="$PROJECT_DIR$/week8/week8.iml" />
+    </modules>
+  </component>
+</project>
